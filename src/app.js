@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const morgan = require('morgan');
 const compression = require('compression');
 
@@ -6,7 +7,6 @@ const { initDB, instance } = require('./dbs/init.mongodb');
 
 // Initialize the database
 // initDB();
-
 const app = express();
 // /logging middleware
 app.use(morgan('dev'));
