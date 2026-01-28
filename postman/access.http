@@ -1,0 +1,9 @@
+
+
+Post http://localhost:3000/api/v1/shop/login
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "password": "testpassword"
+}

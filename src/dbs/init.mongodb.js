@@ -19,7 +19,7 @@ class Database {
 
     async connect() {
         try {
-            const MONGODB_URL = "mongodb://root:jfhe434jc349fj@34.124.179.173:28029/iwms?authSource=admin&retryWrites=true"
+            const MONGODB_URL = "mongodb://root:jfhe434jc349fj@34.124.179.173:28029/be?authSource=admin&retryWrites=true"
             await mongoose.connect(MONGODB_URL, {
                 // useNewUrlParser: true,
                 // useUnifiedTopology: true,
