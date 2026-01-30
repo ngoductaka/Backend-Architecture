@@ -8,7 +8,7 @@ const accessController = require('../../controllers/access.controller');
 const router = express.Router();
 
 // Sign up
-// router.post('/shop/signup', accessController.signUp);
+router.post('/shop/signup', accessController.signUp);
 
 // Login
 router.post('/shop/login', accessController.login);
