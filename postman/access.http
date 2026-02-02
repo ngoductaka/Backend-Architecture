@@ -1,9 +1,10 @@
 
-
-Post http://localhost:3000/api/v1/shop/login
+# REST Client
+Post http://localhost:3100/api/v1/shop/signup
 Content-Type: application/json
 
 {
-    "username": "testuser",
-    "password": "testpassword"
+    "name": "testuser",
+    "password": "testpassword",
+    "email": "dnd2@cc.vv"
 }

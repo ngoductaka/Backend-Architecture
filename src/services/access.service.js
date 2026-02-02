@@ -1,9 +1,9 @@
-const authUtils = require("../auth/auth_utils");
-const KeyTokenService = require("./key.token.service");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cryptography = require('crypto');
 const shopModel = require("../models/shop.model");
+const authUtils = require("../auth/auth_utils");
+const KeyTokenService = require("./key_token.services");
 const ROLE_SHOP = {
     SHOP: 'SHOP',
     EDITOR: 'EDITOR',
@@ -25,21 +25,8 @@ class AccessService {
             const passwordHash = await bcrypt.hash(password, 10); // In real application, hash the password
             const newShop = await shopModel.create({ name, email, password: passwordHash, role: ROLE_SHOP.SHOP });
             if (newShop) {
-
-                const { publicKey, privateKey } = cryptography.generateKeyPairSync('rsa', {
-                    modulusLength: 4096,
-                    publicKeyEncoding: {
-                        type: 'spki',
-                        format: 'pem'
-                    },
-                    privateKeyEncoding: {
-                        type: 'pkcs8',
-                        format: 'pem',
-                        cipher: 'aes-256-cbc',
-                        passphrase: ''
-                    }
-                });
-
+                const { publicKey, privateKey } = authUtils.createRSAKeyPair();
+                console.log({ publicKey, privateKey });
                 const publicKeyString = await KeyTokenService.createKeyToken({
                     userId: newShop._id,
                     publicKey: publicKey
@@ -58,6 +45,7 @@ class AccessService {
                     publicKey: publicKeyString,
                     privateKey: privateKey
                 });
+                console.log('pare key', { publicKey, privateKey });
                 return {
                     code: 201,
                     metadata: {
@@ -65,7 +53,6 @@ class AccessService {
                         tokens,
                     }
                 }
-                console.log('pare key', { publicKey, privateKey });
             }
 
             return {

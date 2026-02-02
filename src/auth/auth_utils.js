@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const cryptography = require('crypto');
 
 const createTokenPare = async ({ payload, publicKey, privateKey }) => {
 
@@ -22,7 +23,30 @@ const createTokenPare = async ({ payload, publicKey, privateKey }) => {
 
 }
 
+const createRSAKeyPair = () => {
+    try {
+        const { publicKey, privateKey } = cryptography.generateKeyPairSync('rsa', {
+            modulusLength: 4096,
+            publicKeyEncoding: {
+                type: 'spki',
+                format: 'pem'
+            },
+            privateKeyEncoding: {
+                type: 'pkcs8',
+                format: 'pem',
+                cipher: 'aes-256-cbc',
+                passphrase: ''
+            }
+        });
+        return { publicKey, privateKey };
+    } catch (error) {
+        console.error('Error generating RSA key pair:', error);
+        return null;
+    }
+
+}
 
 module.exports = {
-    createTokenPare
+    createTokenPare,
+    createRSAKeyPair    
 };
