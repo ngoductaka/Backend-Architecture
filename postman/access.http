@@ -2,6 +2,7 @@
 # REST Client
 Post http://localhost:3100/api/v1/shop/signup
 Content-Type: application/json
+x-api-key: mysecretkey
 
 {
     "name": "testuser",
