@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const cryptography = require('crypto');
+import jwt from 'jsonwebtoken';
+import cryptography from 'crypto';
 
-const createTokenPare = async ({ payload, publicKey, privateKey }) => {
+export const createTokenPare = async ({ payload, publicKey, privateKey }) => {
 
     try {
         // Create JWT token
@@ -23,7 +23,7 @@ const createTokenPare = async ({ payload, publicKey, privateKey }) => {
 
 }
 
-const createRSAKeyPair = () => {
+export const createRSAKeyPair = () => {
     try {
         const { publicKey, privateKey } = cryptography.generateKeyPairSync('rsa', {
             modulusLength: 4096,
@@ -45,8 +45,3 @@ const createRSAKeyPair = () => {
     }
 
 }
-
-module.exports = {
-    createTokenPare,
-    createRSAKeyPair    
-};

@@ -1,11 +1,11 @@
 import { findByEmail } from "./shop.services.js";
-import authUtils, {createTokenPare, createRSAKeyPair} from"../auth/auth_utils";
-const bcrypt = require("bcrypt");
-const lodash = require("lodash");
-const shopModel = require("../models/shop.model");
-// const authUtils = require("../auth/auth_utils");
-const KeyTokenService = require("./key_token.services");
-const { ConflictError, BadRequestError } = require("../core/error.response");
+import * as authUtils from "../auth/auth_utils.js";
+import bcrypt from "bcrypt";
+import lodash from "lodash";
+import shopModel from "../models/shop.model.js";
+import KeyTokenService from "./key_token.services.js";
+import { ConflictError, BadRequestError } from "../core/error.response.js";
+
 const ROLE_SHOP = {
   SHOP: "SHOP",
   EDITOR: "EDITOR",
@@ -94,4 +94,4 @@ class AccessService {
   }
 }
 
-module.exports = AccessService;
+export default AccessService;

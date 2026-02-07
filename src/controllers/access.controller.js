@@ -1,5 +1,5 @@
-const { Created, SuccessResponse } = require("../core/success.response");
-const AccessService = require("../services/access.service");
+import { Created, SuccessResponse } from "../core/success.response.js";
+import AccessService from "../services/access.service.js";
 
 class AccessController {
   async login(req, res) {
@@ -22,4 +22,4 @@ class AccessController {
   }
 }
 
-module.exports = new AccessController();
+export default new AccessController();
