@@ -1,10 +1,11 @@
+import { findByEmail } from "./shop.services.js";
+import authUtils, {createTokenPare, createRSAKeyPair} from"../auth/auth_utils";
 const bcrypt = require("bcrypt");
 const lodash = require("lodash");
-
 const shopModel = require("../models/shop.model");
-const authUtils = require("../auth/auth_utils");
+// const authUtils = require("../auth/auth_utils");
 const KeyTokenService = require("./key_token.services");
-const { ConflictError } = require("../core/error.response");
+const { ConflictError, BadRequestError } = require("../core/error.response");
 const ROLE_SHOP = {
   SHOP: "SHOP",
   EDITOR: "EDITOR",
@@ -61,6 +62,34 @@ class AccessService {
       message: "Shop registered successfully",
       code: "1001",
       status: "success",
+    };
+  }
+  static async login({ name, email, password }) {
+    const shop = await findByEmail(email);
+
+    if (!shop) {
+      throw new BadRequestError("Shop not registered");
+    }
+
+    const match = await bcrypt.compare(password, shop.password);
+    if (!match) {
+      throw new BadRequestError("Password is incorrect");
+    }
+    const { publicKey, privateKey } = createRSAKeyPair();
+    const tokens = await createTokenPare({
+      payload: { shopId: shop._id, email },
+      publicKey: publicKey,
+      privateKey: privateKey,
+    });
+
+    const publicKeyString = await KeyTokenService.createKeyToken({
+      userId: shop._id,
+      publicKey: publicKey,
+    });
+
+    return {
+      shop: lodash.omit(shop, ["password", "__v"]),
+      tokens,
     };
   }
 }

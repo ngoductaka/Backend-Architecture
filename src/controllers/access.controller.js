@@ -1,17 +1,18 @@
-const { Created } = require("../core/success.response");
+const { Created, SuccessResponse } = require("../core/success.response");
 const AccessService = require("../services/access.service");
 
 class AccessController {
-  login(req, res) {
+  async login(req, res) {
     const { name, email, password } = req.body;
-    // Here you would normally validate the username and password
-    if (username === "testuser" && password === "testpassword") {
-      return res
-        .status(200)
-        .json({ message: "Login successful", token: "fake-jwt-token" });
-    } else {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
+    // 1. check mail in db 
+    // 2. match password
+    // 3. create access token, refresh token
+    // 4. get user info
+    new SuccessResponse({
+      message: "Shop login successfully",
+      metadata: await AccessService.login({ name, email, password }),
+    }).send(res);
+    
   }
   async signUp(req, res) {
     new Created({
