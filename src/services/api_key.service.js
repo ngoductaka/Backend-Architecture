@@ -1,18 +1,14 @@
-const ApiKeyModel = require('../models/api_key.model');
-
+import ApiKeyModel from "../models/api_key.model.js";
 
 const findByKey = async (key) => {
-    // Assuming ApiKeyModel is imported and available
+  // Assuming ApiKeyModel is imported and available
 
-    // ApiKeyModel.create({
-    //     key: 'mysecretkey',
-    //     status: true,
-    //     permissions: ['111'],
-    // });
-    return await ApiKeyModel.findOne({ key, status: true }).lean();
+  // ApiKeyModel.create({
+  //     key: 'mysecretkey',
+  //     status: true,
+  //     permissions: ['111'],
+  // });
+  return await ApiKeyModel.findOne({ key, status: true }).lean();
 };
 
-
-module.exports = {
-    findByKey,
-};
+export { findByKey };

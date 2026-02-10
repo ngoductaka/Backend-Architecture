@@ -1,7 +1,8 @@
-const router = require('express').Router();
-const { apiKey } = require('../auth/check_auth.js');
+import express from "express";
+import { apiKey } from "../auth/check_auth.js";
+import accessRoutes from "./access/index.js";
 
-router.use(apiKey);
-router.use('/api/v1', require('./access'));
+const router = express.Router();
+router.use("/api/v1", accessRoutes);
 
-module.exports = router;
+export default router;

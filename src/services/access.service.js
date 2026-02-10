@@ -1,5 +1,5 @@
 import { findByEmail } from "./shop.services.js";
-import * as authUtils from "../auth/auth_utils.js";
+import { createRSAKeyPair, createTokenPair } from "../auth/auth_utils.js";
 import bcrypt from "bcrypt";
 import lodash from "lodash";
 import shopModel from "../models/shop.model.js";
@@ -28,7 +28,7 @@ class AccessService {
       role: ROLE_SHOP.SHOP,
     });
     if (newShop) {
-      const { publicKey, privateKey } = authUtils.createRSAKeyPair();
+      const { publicKey, privateKey } = createRSAKeyPair();
       console.log({ publicKey, privateKey });
       const publicKeyString = await KeyTokenService.createKeyToken({
         userId: newShop._id,
@@ -43,7 +43,7 @@ class AccessService {
         };
       }
 
-      const tokens = await authUtils.createTokenPare({
+      const tokens = await createTokenPair({
         payload: { shopId: newShop._id, email },
         publicKey: publicKeyString,
         privateKey: privateKey,
@@ -64,7 +64,7 @@ class AccessService {
       status: "success",
     };
   }
-  static async login({ name, email, password }) {
+  static async login({ email, password }) {
     const shop = await findByEmail(email);
 
     if (!shop) {
@@ -76,7 +76,7 @@ class AccessService {
       throw new BadRequestError("Password is incorrect");
     }
     const { publicKey, privateKey } = createRSAKeyPair();
-    const tokens = await createTokenPare({
+    const tokens = await createTokenPair({
       payload: { shopId: shop._id, email },
       publicKey: publicKey,
       privateKey: privateKey,
@@ -85,12 +85,32 @@ class AccessService {
     const publicKeyString = await KeyTokenService.createKeyToken({
       userId: shop._id,
       publicKey: publicKey,
+      privateKey: privateKey,
+      refreshTokens: tokens.refreshToken,
     });
 
     return {
       shop: lodash.omit(shop, ["password", "__v"]),
       tokens,
     };
+  }
+
+  static async logout({ keyStore }) {
+    return await KeyTokenService.removeKeyById(keyStore);
+  }
+
+  static async handleRefreshToken({ refreshToken, userId }) {
+    // check token used
+    // check refresh token exist in db
+    const foundedToken =
+      await KeyTokenService.findByRefreshTokenUsed(refreshToken);
+    if (foundedToken) {
+      await KeyTokenService.removeByUserId(userId);
+      throw new BadRequestError(
+        "Something wrong happened. Please login again",
+        403,
+      );
+    }
   }
 }
 

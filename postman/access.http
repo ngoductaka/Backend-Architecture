@@ -7,5 +7,31 @@ x-api-key: mysecretkey
 {
     "name": "testuser",
     "password": "testpassword",
-    "email": "dnd6cc.vv"
+    "email": "dnd8cc.vv"
+}
+###
+Post http://localhost:3100/api/v1/shop/login
+Content-Type: application/json
+x-api-key: mysecretkey
+client-id: 698aecb466ac1e8662d574f6
+# Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaG9wSWQiOiI2OThhZWNiNDY2YWMxZTg2NjJkNTc0ZjYiLCJlbWFpbCI6ImRuZDhjYy52diIsImlhdCI6MTc3MDcxNDM3OCwiZXhwIjoxNzcwODAwNzc4fQ.xmlw719YUzLGOU5FyOYpVR-meeNMpoifGBni9h7fWYCrEpYMO1ghDaHYOKS-pEjdUHOQqcUy4rTwSl0RGGDPZyAtjAzFyoOOvJGT29K72K8fXTJrb4mhpp__xjV0eovbYQEHltKyhY9rg0ZZNdxdyUNlJrrZ6kFD8LIytXyYuyN_7ocwd8eutMi2Y7RoB-8zSVpb6zlMetnzndvjZrj5LALLbmFa0DJdf4CgkjeIlJSoQPXtspZ2qIBgeiQJ7epccKLa1nwbM2tkgcye7q4x_bTSX6fRZ7F5c3blZNwM63wrPHApZTR8psuZOwKC2WtcASTUtrUT5ZZOKjT-Jg0pszdPzNe_JntLPThKYwaDelZ07XRVQAi5m1utHJFpRibu5N9koXc57U2xuYbWOMXDW5XTI1jybIAC4Zuovffad64UTP4ri9IcY8Tb__Ofk05C7jryngV_YKjiX2HyxhRS2FRJYfC_UgpwfY3rp9a7sWuGNHAMAGkvcfnVFeb1BtPYu6eckokV4kp-tpNrWLy2Dn_Pjs0d14_AEb6x0n-rqm1cv8qeFhPU0_rhqquFy_30WGipjV_a5i5GnoeOpHSQBw4_bf2QQ17GHGH7yOlmDrMcL8ED_KimkKED61YwfeurK-RyMutNExRL3TDKk3qH7u1NSG_FGDUNA0kZDtbing4
+
+{
+    "name": "testuser",
+    "password": "testpassword",
+    "email": "dnd8cc.vv"
+}
+
+
+### logout 
+Post http://localhost:3100/api/v1/shop/logout
+Content-Type: application/json
+x-api-key: mysecretkey
+client-id: 698aecb466ac1e8662d574f6
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaG9wSWQiOiI2OThhZWNiNDY2YWMxZTg2NjJkNTc0ZjYiLCJlbWFpbCI6ImRuZDhjYy52diIsImlhdCI6MTc3MDcxNTQ3OSwiZXhwIjoxNzcwODAxODc5fQ.a-S3CX_hQUW7WQ3SSc_CNjnEmZ8o3mZuMGTcZfs056P3iABB68BFOV1wTSH2HuTEisCHg9c7hdCnkJxpQ9fI9yOZK9sixrlLTCx8ohhDOB4y8tkOrABu4N5sglnj8gkSPsi6-DbHe-0wTRlrdRjeU3HYC9H2_-mwbdbcCGeIZMia07SIx2eZhqBkAUMtzWvYtlSToZE4T12DgjuL2M3QEWNmGxUyk7JtivEJqTApcomRP0GVSF6S5_SfRFSBoTe7JEI-ZtZsmFVwvtVxCmQjyKIanwnH0mVRdQaVXRSysXAXDKyW3E9mLwrKH-15iJt0sD1msY5pFQoDU7rpBRWws-S7Whw75_HrxxaNcpTAyIQFflv0PWTsgk6_2HWTeRkvZ0RsbchzkhgIiocjTnsZCRWS6WXzh-2K5dCh-8yBz8tQWdqS9ixtzTSnEnurJ1DMY2TeouS6mUYwrzDn6Z9TLJmPSWosBVQh1xhFWoTpLHkGC4MrhJ4MiQlOWWXKX7KFPQJeRilgLCsI5C8oH4Gow_u6FXoRT9pf1tuMr4rHihsQc4c0j6Ke-U5RLs4eBdUfZ4gaRtD6UmS7V4jBJeanKMQ7ThdOJuyBZqrG4Tcd0Z_feMIYuR9nqDkpqgIXgW_dsS5WcMmyB6l2S9T8TnZdWd1yZTexy8uDAzgkOY0tXSw
+
+{
+    "name": "testuser",
+    "password": "testpassword",
+    "email": "dnd8cc.vv"
 }

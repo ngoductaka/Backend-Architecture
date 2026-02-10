@@ -1,10 +1,12 @@
-const express = require("express");
-require("dotenv").config();
-const morgan = require("morgan");
-const compression = require("compression");
+import express from "express";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import compression from "compression";
 
-const { initDB, instance } = require("./dbs/init.mongodb");
+import { initDB, instance } from "./dbs/init.mongodb.js";
+import routes from "./routes/index.js";
 
+dotenv.config();
 // Initialize the database
 // initDB();
 const app = express();
@@ -18,7 +20,7 @@ app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body"),
 );
 app.use(express.json());
-app.use("/", require("./routes/index"));
+app.use("/", routes);
 
 app.use((req, res, next) => {
   const error = new Error("Not Found");
@@ -35,4 +37,4 @@ app.use((error, req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;

@@ -1,36 +1,36 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from "mongoose";
 
-const DOCUMENT_NAME = 'Key';
-const COLLECTION_NAME = 'Keys';
+const DOCUMENT_NAME = "Key";
+const COLLECTION_NAME = "Keys";
 
 const keyTokenSchema = new Schema(
-    {
-        user: {
-            type: Schema.Types.ObjectId,
-            required: true,
-            ref: 'Shop',
-        },
-        publicKey: {
-            type: String,
-            required: true,
-        },
-        privateKey: {
-            type: String,
-            // required: true,
-        },
-        refreshToken: {
-            type: String,
-            required: true,
-        },
-        refreshTokensUsed: {
-            type: Array,
-            default: [],
-        },
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "Shop",
     },
-    {
-        timestamps: true,
-        collection: COLLECTION_NAME,
-    }
+    publicKey: {
+      type: String,
+      required: true,
+    },
+    privateKey: {
+      type: String,
+      // required: true,
+    },
+    refreshToken: {
+      type: String,
+      required: true,
+    },
+    refreshTokensUsed: {
+      type: Array,
+      default: [],
+    },
+  },
+  {
+    timestamps: true,
+    collection: COLLECTION_NAME,
+  },
 );
 
-module.exports = model(DOCUMENT_NAME, keyTokenSchema);
+export default model(DOCUMENT_NAME, keyTokenSchema);
