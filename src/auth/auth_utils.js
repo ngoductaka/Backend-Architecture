@@ -95,3 +95,16 @@ export const authentication = asyncHandler(async (req, res, next) => {
     throw new ErrorResponse("Invalid token", 403);
   }
 });
+
+export const verifyToken = (token, publicKey) => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, publicKey, { algorithms: ["RS256"] }, (err, decoded) => {
+      if (err) {
+        console.error("Token verification failed:", err);
+        return reject(err);
+      }
+      console.log("Decoded token payload:", decoded);
+      resolve(decoded);
+    });
+  });
+};

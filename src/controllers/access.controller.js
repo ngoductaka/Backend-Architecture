@@ -29,6 +29,19 @@ class AccessController {
       statusCode: 200,
     }).send(res);
   }
+  async handleRefreshToken(req, res) {
+    console.log("Handling refresh token with body:", req.body);
+    const { refreshToken } = req.body;
+    const { userId } = req.user;
+    new SuccessResponse({
+      message: "Token refreshed successfully",
+      metadata: await AccessService.handleRefreshToken({
+        refreshToken,
+        userId,
+      }),
+      statusCode: 200,
+    }).send(res);
+  }
 }
 
 export default new AccessController();

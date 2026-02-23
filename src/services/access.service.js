@@ -1,6 +1,7 @@
 import { findByEmail } from "./shop.services.js";
 import { createRSAKeyPair, createTokenPair } from "../auth/auth_utils.js";
 import bcrypt from "bcrypt";
+import { verifyToken } from "../auth/auth_utils.js";
 import lodash from "lodash";
 import shopModel from "../models/shop.model.js";
 import KeyTokenService from "./key_token.services.js";
@@ -111,6 +112,16 @@ class AccessService {
         403,
       );
     }
+
+    const holderToken = await KeyTokenService.findByRefreshToken(refreshToken);
+    if (!holderToken) {
+      throw new BadRequestError("Shop not registered", 403);
+    }
+
+    const { userId, email } = await verifyToken(
+      refreshToken,
+      holderToken.publicKey,
+    );
   }
 }
 
