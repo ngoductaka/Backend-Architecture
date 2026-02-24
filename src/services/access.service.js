@@ -118,7 +118,7 @@ class AccessService {
       throw new BadRequestError("Shop not registered", 403);
     }
 
-    const { userId, email } = await verifyToken(
+    const { email } = await verifyToken(
       refreshToken,
       holderToken.publicKey,
     );
