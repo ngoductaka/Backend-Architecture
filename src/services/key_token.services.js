@@ -48,7 +48,7 @@ class KeyTokenService {
   static findByRefreshToken = async (refreshToken) => {
     return await KeyTokenModel.findOne({
       refreshToken: refreshToken,
-    }).lean();
+    });
   };
 }
 

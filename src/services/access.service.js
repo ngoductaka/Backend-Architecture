@@ -102,7 +102,9 @@ class AccessService {
 
   static async handleRefreshToken({ refreshToken, userId }) {
     // check token used
-    // check refresh token exist in db
+    // check refresh token exist in db => if found delete all token of user
+    // if not found => create new pair of token and return to user
+
     const foundedToken =
       await KeyTokenService.findByRefreshTokenUsed(refreshToken);
     if (foundedToken) {
@@ -122,6 +124,35 @@ class AccessService {
       refreshToken,
       holderToken.publicKey,
     );
+
+    if (email !== userId.email) {
+      throw new BadRequestError("Invalid token", 403);
+    }
+
+    const shop = await findByEmail(email);
+    if (!shop) {
+      throw new BadRequestError("Shop not registered", 403);
+    }
+
+    const tokens = await createTokenPair({
+      payload: { shopId: shop._id, email },
+      publicKey: holderToken.publicKey,
+      privateKey: holderToken.privateKey,
+    });
+
+    await holderToken.updateOne({
+      $set: {
+        refreshToken: tokens.refreshToken,
+      },
+      $addToSet: {
+        refreshTokensUsed: refreshToken,
+      },
+    });
+
+    return {
+      shop: lodash.omit(shop, ["password", "__v"]),
+      tokens,
+    };
   }
 }
 
