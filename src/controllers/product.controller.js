@@ -5,7 +5,10 @@ class ProductController {
   async createProduct(req, res) {
     new SuccessResponse({
       message: "Product created successfully",
-      metadata: await ProductService.createProduct(req.body.product_type, req.body),
+      metadata: await ProductService.createProduct(req.body.product_type, {
+        ...req.body,
+        product_shop: req.user.shopId,
+      }),
       statusCode: 200,
     }).send(res);
   }

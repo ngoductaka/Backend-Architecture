@@ -10,11 +10,11 @@ export const createTokenPair = async ({ payload, publicKey, privateKey }) => {
     // Create JWT token
     const accessToken = jwt.sign(payload, privateKey, {
       algorithm: "RS256",
-      expiresIn: "1d",
+      expiresIn: "90d",
     });
     const refreshToken = jwt.sign(payload, privateKey, {
       algorithm: "RS256",
-      expiresIn: "7d",
+      expiresIn: "70d",
     });
 
     jwt.verify(

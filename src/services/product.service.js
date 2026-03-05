@@ -8,7 +8,7 @@ class ProductFactory {
             case 'clothing':
                 return new Clothing(data).createProduct();
             case 'electronics':
-                return new Electronics(data).createProduct(data);
+                return new Electronics(data).createProduct();
             default:
                 throw new SuccessResponse('Invalid product type', 400);
         }
@@ -25,8 +25,8 @@ export class Product {
         this.product_description = product_description;
         this.product_attributes = product_attributes;
     }
-    async createProduct() {
-        return await product.create(this);
+    async createProduct(product_id) {
+        return await product.create({...this, _id: product_id});
     }
 }
 
@@ -34,7 +34,7 @@ export class Clothing extends Product {
     async createProduct() {
         const newClothing = await clothing.create(this.product_attributes);
         if(!newClothing) throw new SuccessResponse('Failed to create clothing attributes', 400);
-        const newProduct = await super.createProduct();
+        const newProduct = await super.createProduct(newClothing._id);
         if(!newProduct) throw new SuccessResponse('Failed to create newProduct attributes', 400);
 
         return newProduct;
@@ -45,7 +45,7 @@ export class Electronics extends Product {
     async createProduct() {
         const newElectronics = await electronics.create(this.product_attributes);
         if(!newElectronics) throw new SuccessResponse('Failed to create electronics attributes', 400);
-        const newProduct = await super.createProduct();
+        const newProduct = await super.createProduct(newElectronics._id);
         if(!newProduct) throw new SuccessResponse('Failed to create newProduct attributes', 400);
 
         return newProduct;

@@ -6,20 +6,19 @@ Post http://localhost:3100/api/v1/product
 Content-Type: application/json
 x-api-key: mysecretkey
 client-id: 698aecb466ac1e8662d574f6
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaG9wSWQiOiI2OThhZWNiNDY2YWMxZTg2NjJkNTc0ZjYiLCJlbWFpbCI6ImRuZDhjYy52diIsImlhdCI6MTc3MjUwNzI0MywiZXhwIjoxNzcyNTkzNjQzfQ.IeZoSmfVew9aa1cgngn_VTntlo7lMsOuU2CulyIH2bGm6ITYRbwdLLh3RH96P81yTcmLxKb8rfDp2_LWgbUgxr-5v9XsBqMCtvtMsDIMF0ebWzNxleIXJoSp3AXYcVYl_vmpzHLWm2PXi3WVzYRyFyTCFz20rFD-DAlg98VvfV_5g6IoQdQrvY7hM15tkVS49xlrdt-x8kMjbrh-MS4cTZcn6GD38vXIghPexXmRFDtWc0tGhQaQQoBUc7eZhil6EInkY0yFRU959ZtBJZLqDiUTNGAQg5HNoyhwMWQ2sqlEgAhTIz7IaW11hs9veV_vbO1niNQvxOl5ezEv6f-s6ac4gwdgpGkWMnLtjpnwbZx0vAQw_eAw1IEcBJDyTOFgaEBgYzR8Iimi1ieSlC2hm26FKJSTtCBB8WainXeOjScXj6Js2UE8JrdxbztU9-IwTgvliTma6tmvKEarBCZbUT73wqUwqCz_vRT2Ry8xFHERnV0-mhfAJjy-DqKQcDDu0IuzPld_6jpEhnDw0Sc2GJmYv_YX5PMUhSpBFVKCJvQi8JTUPhS6C-HcILdXZDZXwOahm2reRrDfQC4J2_xSjK_7SeHl-f4JbBRA3XuHzp6HEPKWLWyCxVd2nMpfnC7XdqYkphTmSycQlxVzpVhqqLF9J8LQkkX2boPoGzLY_jo
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaG9wSWQiOiI2OThhZWNiNDY2YWMxZTg2NjJkNTc0ZjYiLCJlbWFpbCI6ImRuZDhjYy52diIsImlhdCI6MTc3MjY4Mzc2MCwiZXhwIjoxNzgwNDU5NzYwfQ.dnsEI7jTULe7RAkCVMFS95TiTpW5ICxwhNxyI25DWKVfkedndu6ElBtrHp9of1CHXUSE6wuD65td1cmbCEI0zZpxFE9PW0X5RY7yKno2G9vzas1AL7uEMk0cXT6JlptM7f95WW-jRr8s6DXdg5jTX4mkrYoNQuVANahnVvq1V2gyc2RhljOHfjUTRZd7g5n6bIY5dUQLA_2Cw60kl0LHFkZ-x6IeFl5AWB9sx9uQ0Dy3hZlEFwKt1vMAI54BOnssaQxewXvIMcnErUSXxvzhYG4JkV4QmRo-aQmakKIGkgpZO_gBUvRjkQu3T37mSCvf9iThaJwUE6ZnNhhdk3-QntC_iDSAxnAkXL9z7-v1_tUViLLxCpbEE0Xx5qiG0eyOHrtwU5bSlLHQJc6atiarRYvg-9fKBGm6G0bxqaveahQJAgDkcbd9_aT_h9oCXO0_3xxa8CHemrruLSBK99cTtkXcRb12Vn76B3_5oNHSYba9sr1EFHmxEYwY2e0xAOVjYAd1ckQ2I8SPn-7C5npNBjPxyGmQcFQXyykQSEATtmrv7uLwKFCLbgVgBOYkuS4MmEpqYK3yfbqOwF7gw4JJkf1aksMZvDDOLKTcXFMNZDFX0jJm8FSMYI1AWNuzyKu_D-67ZnfqAWfRSmgJvhtNiNJGu9Zy5MJms7uI3NnNoIM
 
 {
-"product_name":" product_name:", 
-"product_thumb":"     product_thumb:", 
-"product_description":"     product_description:", 
-"product_price":100, 
-"product_quantity":200, 
-"product_type":"electronics",
-"product_category":"mobile",
-"product_attributes":{
-    "brand": "Apple",
-    "model": "iPhone 15 Pro",
-    "color": "Natural Titanium"
-},
-"product_shop":"698aecb466ac1e8662d574f6"
+    "product_name":"ip 17 pro__", 
+    "product_thumb":"img thumb", 
+    "product_description":"     product_description:", 
+    "product_price":100, 
+    "product_quantity":200, 
+    "product_type":"electronics",
+    "product_category":"mobile",
+    "product_attributes":{
+        "brand": "Apple",
+        "model": "iPhone 17 Pro",
+        "color": "Natural Titanium"
+    }
 }
